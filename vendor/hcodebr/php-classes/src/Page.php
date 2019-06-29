@@ -13,7 +13,7 @@ class Page
         "data" => []
     ];
     
-    public function __construct ($opts = array())
+    public function __construct ($opts = array(), $tpl_dir = "/views/")
     {
 
         //se o $opts for passado como parametro o array merge fará um mesclagem dos dados
@@ -22,9 +22,9 @@ class Page
 
         // config
         $config = array(
-            "tpl_dir"       => $_SERVER["DOCUMENT_ROOT"] . "/views\/", //define o diretório das templates
-            "cache_dir"     => $_SERVER["DOCUMENT_ROOT"] . "/views-cache\/", // define o ditretório de cache
-            "debug"         => false // set to false to improve the speed
+            "tpl_dir"       => $_SERVER["DOCUMENT_ROOT"] . $tpl_dir, //define o diretório das templates
+            "cache_dir"     => $_SERVER["DOCUMENT_ROOT"] . "/views-cache/", // define o ditretório de cache
+            "debug"         => true // set to false to improve the speed
         );
 
         Tpl::configure( $config );
@@ -61,7 +61,7 @@ class Page
     }
 
 
-    public function __desctruct()
+    public function __destruct()
     {
         
         $this->tpl->draw("footer");
